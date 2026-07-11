@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: ecommerce-db
+    environment:
+      MYSQL_ROOT_PASSWORD: RootPass@123
+      MYSQL_DATABASE: ecommjava
+      MYSQL_USER: ecommerce_user
+      MYSQL_PASSWORD: Ecomm@123
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./basedata.sql:/docker-entrypoint-initdb.d/basedata.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 5
+
+  app:
+    build: .
+    container_name: ecommerce-app
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_URL: jdbc:mysql://db:3306/ecommjava?createDatabaseIfNotExist=true
+      DB_USERNAME: ecommerce_user
+      DB_PASSWORD: Ecomm@123
+    ports:
+      - "8080:8080"
+
+volumes:
+  db_data:
+

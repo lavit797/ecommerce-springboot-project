@@ -12,12 +12,19 @@
 	<groupId>com.jtspringproject</groupId>
 	<artifactId>JtSpringProject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>JtSpringProject</name>
 	<description>Spring project for Java Technology</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
+
+	<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-tomcat</artifactId>
+    <scope>provided</scope>
+</dependency>
 
 
 		<dependency>
@@ -74,6 +81,7 @@
 	</dependencies>
 
 	<build>
+	<finalName>app</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
