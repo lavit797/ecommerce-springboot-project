@@ -69,7 +69,7 @@ jobs:
           path: .
 
       - name: rename war to app.war
-        run: mv *-war app.war
+        run: mv *.war app.war
 
       - name: log in to dockerhub
         uses: docker/login-action@v3
