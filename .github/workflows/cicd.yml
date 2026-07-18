@@ -44,6 +44,10 @@ jobs:
                   cache: maven
                   
             - name: run tests
+              env:
+               DB_URL: jdbc:mysql://localhost:3306/ecommjava
+               DB_USERNAME: test_user
+               DB_PASSWORD: test_pass
               run: mvn test
               
             - name: upload test results
