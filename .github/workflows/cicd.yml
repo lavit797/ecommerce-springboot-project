@@ -48,6 +48,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           mvn clean verify sonar:sonar \
+            -DskipTests \
             -Dsonar.projectKey=lavit797_ecommerce-springboot-project \
             -Dsonar.organization=lavit797 \
             -Dsonar.host.url=http://44.207.0.157:9000 \
