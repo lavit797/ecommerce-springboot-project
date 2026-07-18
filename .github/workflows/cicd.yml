@@ -23,7 +23,7 @@ jobs:
               run: mvn clean package -DskipTests
               
             - name: upload build artifacts
-              uses: actions/upload-artifacts@v3
+              uses: actions/upload-artifact@v3
               with:
                 name: app-war
                 path: target/*.war
@@ -48,7 +48,7 @@ jobs:
               
             - name: upload test results
               if: always()
-              uses: actions/upload-artifacts@v3
+              uses: actions/upload-artifact@v3
               with:
                 name: test-results
                 path: target/surefire-reports/*.xml
