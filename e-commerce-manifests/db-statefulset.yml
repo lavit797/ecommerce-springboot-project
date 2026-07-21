@@ -13,7 +13,7 @@ metadata:
             metadata:
                 labels:
                     app: db  
-  spec:
+    spec:
     containers:
        - name: db
          image: mysql:8.0
@@ -34,7 +34,7 @@ metadata:
                 resources:
                     requests:
                         storage: 2Gi
-
+---
 apiVersion: v1
 kind: Service
 metadata:
