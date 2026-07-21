@@ -51,7 +51,7 @@ jobs:
             -DskipTests \
             -Dsonar.projectKey=lavit797_ecommerce-springboot-project \
             -Dsonar.organization=lavit797 \
-            -Dsonar.host.url=http://44.207.0.157:9000 \
+            -Dsonar.host.url=http://100.27.197.54:9000 \
             -Dsonar.token=$SONAR_TOKEN
 
   push:
