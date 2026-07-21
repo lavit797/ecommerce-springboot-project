@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: e-commerce-deployment
+    namespace: e-commerce
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: e-commerce-app
+    template:
+        metadata:
+            labels:
+                app: e-commerce-app
+        spec:
+            containers:
+                - name: e-commerce     
+                  image: tyagilavit/ecommerce-app:latest
+                  ports:
+                    - containerPort: 8080
+                  env:
+                    - name: DB_URL
+                      value: jdbc:mysql://db:3306/ecommjava?createDatabaseIfNotExist=true 
+                    - name: DB_USERNAME
+                      valueFrom:
+                        secretKeyRef:
+                            name: db-secret
+                            key: MYSQL_USER
+                    - name: DB_PASSWORD
+                      valueFrom:
+                        secretKeyRef:
+                            name: db-secret
+                            key: MYSQL_PASSWORD   
+                            
+apiVersion: v1
+kind: Service
+metadata:
+    name: e-commerce-service
+    namespace: e-commerce
+spec:
+    selector:
+            app: e-commerce-app
+    
+    ports:
+       - port: 80
+         targetPort: 8080
+         type: ClusterIP                          
